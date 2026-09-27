@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tasks Panitia — EDUV 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream-0:#FBF6EC; --cream-1:#F2E6CE; --cream-2:#E8D6AF;
+    --bark-0:#4A3221; --bark-1:#6E4A2A; --bark-2:#8C5E30;
+    --clay:#B4763C; --line:#D3B98C; --ink:#3A2A1B;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{margin:0; background:var(--cream-0); color:var(--ink); font-family:'Inter',sans-serif;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 28px 80px;}
+
+  header.hero{padding:64px 28px 48px; border-bottom:1px solid var(--line);
+    background:radial-gradient(600px 260px at 85% -10%, rgba(180,118,60,.16), transparent 70%), var(--cream-0);}
+  .hero-inner{max-width:1100px; margin:0 auto;}
+  .kicker{font-family:'Fraunces',serif; font-style:italic; font-size:17px; color:var(--bark-2); margin:0 0 10px;}
+  h1{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(34px,5vw,54px); line-height:1.05;
+    margin:0 0 18px; color:var(--bark-0); max-width:19ch;}
+  .hero p{font-size:16px; line-height:1.6; max-width:60ch; color:var(--bark-1); margin:0 0 8px;}
+  .hero .note{font-size:13.5px; color:var(--bark-2); font-style:italic;}
+
+  nav.toc{display:flex; flex-wrap:wrap; gap:8px 10px; padding:22px 28px; max-width:1100px; margin:0 auto;
+    border-bottom:1px solid var(--line);}
+  nav.toc a{font-size:13.5px; color:var(--bark-1); text-decoration:none; padding:7px 14px;
+    border:1px solid var(--line); border-radius:100px; background:var(--cream-1); white-space:nowrap;}
+  nav.toc a:hover{background:var(--cream-2); border-color:var(--clay);}
+
+  .tier-label{font-family:'Fraunces',serif; font-style:italic; font-size:19px; color:var(--bark-2);
+    margin:56px 0 22px; padding-bottom:12px; border-bottom:1px solid var(--line);}
+
+  .role{padding:34px 0 8px; border-bottom:1px solid var(--line); scroll-margin-top:20px;}
+  .role:last-child{border-bottom:none;}
+  .role-head{display:grid; grid-template-columns:56px 1fr; gap:0 22px; margin-bottom:20px;}
+  .num{font-family:'Fraunces',serif; font-weight:500; font-size:30px; color:var(--clay); line-height:1;}
+  .role h2{font-family:'Fraunces',serif; font-weight:600; font-size:24px; margin:0 0 4px; color:var(--bark-0);}
+  .reports-to{font-size:13px; color:var(--bark-2); margin:0;}
+
+  .taskcard{margin-left:78px; background:var(--cream-1); border:1px solid var(--line); border-radius:6px; padding:20px 22px 18px;}
+  .phase-tag{display:flex; align-items:center; gap:8px; font-family:'Fraunces',serif; font-weight:600;
+    font-size:14.5px; margin:0 0 14px; color:var(--ink);}
+  .dot{width:8px; height:8px; border-radius:50%; flex:none; background:var(--clay);}
+  .taskcard ol{list-style:none; margin:0; padding:0; counter-reset:step; display:grid; gap:11px;}
+  .taskcard li{counter-increment:step; position:relative; padding-left:34px; font-size:14px; line-height:1.55; color:var(--ink);}
+  .taskcard li::before{content:counter(step); position:absolute; left:0; top:-1px; width:24px; height:24px;
+    border-radius:50%; background:var(--clay); color:var(--cream-0); font-family:'Fraunces',serif; font-weight:600;
+    font-size:12px; display:flex; align-items:center; justify-content:center;}
+
+  footer{text-align:center; font-size:13px; color:var(--bark-2); padding:40px 28px 10px;}
+
+  @media (max-width:820px){
+    .taskcard{margin-left:0; margin-top:10px;}
+    .role-head{grid-template-columns:36px 1fr; gap:0 14px;}
+    .num{font-size:22px;}
+    header.hero{padding:44px 20px 34px;}
+  }
+
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --cream-0:#241A11; --cream-1:#2E2116; --cream-2:#3A2A1B;
+      --bark-0:#F2E6CE; --bark-1:#E4C89C; --bark-2:#C99A5E;
+      --clay:#D69457; --line:#4A3722; --ink:#EFE2C8;
+    }
+  }
+  :root[data-theme="dark"]{
+    --cream-0:#241A11; --cream-1:#2E2116; --cream-2:#3A2A1B;
+    --bark-0:#F2E6CE; --bark-1:#E4C89C; --bark-2:#C99A5E;
+    --clay:#D69457; --line:#4A3722; --ink:#EFE2C8;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="kicker">Tasks Pra-Kegiatan per Divisi</p>
+    <h1>Tasks Panitia Education With Environment (EDUV) 2026</h1>
+    <p>Daftar tasks tiap unsur kepanitiaan untuk fase persiapan, sudah diurutkan berdasarkan alur pengerjaan — task yang harus dikerjakan lebih dulu ada di urutan paling atas.</p>
+    <p class="note">Tasks Hari-H dan Pasca-Kegiatan belum tersedia di data — akan ditambahkan menyusul.</p>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#ketua">1. Ketua Pelaksana</a>
+  <a href="#kestari">2. Divisi Kestari</a>
+  <a href="#acara">3. Divisi Acara</a>
+  <a href="#humas">4. Divisi Humas</a>
+  <a href="#logistik">5. Divisi Logistik</a>
+  <a href="#pdd">6. Divisi PDD</a>
+  <a href="#konsumsi">7. Divisi Konsumsi</a>
+  <a href="#medis">8. Divisi Medis</a>
+</nav>
+
+<div class="wrap">
+
+  <p class="tier-label">Pimpinan Pelaksana</p>
+
+  <div class="role" id="ketua">
+    <div class="role-head"><div class="num">01</div><div>
+      <h2>Ketua Pelaksana</h2><p class="reports-to">Memimpin keseluruhan kepanitiaan</p></div></div>
+    <div class="taskcard">
+      <p class="phase-tag"><span class="dot"></span>Pra-Kegiatan</p>
+      <ol>
+        <li>Menyusun struktur panitia dan alur koordinasi.</li>
+        <li>Menetapkan timeline kegiatan.</li>
+        <li>Membuat proposal.</li>
+        <li>Memimpin rapat besar dan teknis.</li>
+        <li>Mengambil keputusan.</li>
+        <li>Mengawasi seluruh progress divisi.</li>
+        <li>Pengumuman ke peserta.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="role" id="kestari">
+    <div class="role-head"><div class="num">02</div><div>
+      <h2>Divisi Kestari</h2><p class="reports-to">Bertanggung jawab kepada Ketua Pelaksana</p></div></div>
+    <div class="taskcard">
+      <p class="phase-tag"><span class="dot"></span>Pra-Kegiatan</p>
+      <ol>
+        <li>Menyusun proposal kegiatan.</li>
+        <li>Membuat seluruh draft persuratan (perizinan, undangan, orangtua, dll).</li>
+        <li>Notulensi setiap rapat.</li>
+        <li>Menyiapkan format presensi & pencatatan kehadiran seluruh panitia dan HIMAPENA.</li>
+        <li>Menyiapkan kelengkapan administrasi.</li>
+        <li>Mengarsipkan seluruh kegiatan administrasi (proposal, persuratan, notulensi).</li>
+      </ol>
+    </div>
+  </div>
+
+  <p class="tier-label">Divisi Pelaksana</p>
+
+  <div class="role" id="acara">
+    <div class="role-head"><div class="num">03</div><div>
+      <h2>Divisi Acara</h2><p class="reports-to">Bertanggung jawab kepada Ketua Pelaksana</p></div></div>
+    <div class="taskcard">
+      <p class="phase-tag"><span class="dot"></span>Pra-Kegiatan</p>
+      <ol>
+        <li>Menyusun konsep kegiatan secara kasar dan detail.</li>
+        <li>Menyusun rundown secara detail (setiap sesi, durasi, PIC, tempat, dll).</li>
+        <li>Membagi PIC dari beberapa rangkaian.</li>
+        <li>Koordinasi dengan divisi logistik terkait kebutuhan kegiatan.</li>
+        <li>Membagi kelompok peserta dan kelompok tenda.</li>
+        <li>Menentukan warna setiap kelompok.</li>
+        <li>Menetapkan barang bawaan peserta.</li>
+        <li>Menetapkan pemateri untuk pengondisian barang bawaan carrier peserta.</li>
+        <li>Menyusun konsep Pra-Eduv.</li>
+        <li>Menentukan perangkat Apel Pembukaan.</li>
+        <li>Menentukan perangkat senam.</li>
+        <li>Menentukan konsep project angkatan.</li>
+        <li>Penentuan perangkat upacara api unggun dan konsep.</li>
+        <li>Menentukan konsep menko ketika pengukuhan.</li>
+        <li>Menentukan konsep kreasi seni.</li>
+        <li>Sholat shubuh dan kultum.</li>
+        <li>Menyusun konsep pos to pos malam hari.</li>
+        <li>Menyiapkan TOR untuk setiap angkatan untuk pos malam.</li>
+        <li>Menentukan games pada setiap pos to pos siang.</li>
+        <li>Menyiapkan barang dan pemetaan orang di pos to pos.</li>
+        <li>Pemetaan kelompok bekang dan transport panitia.</li>
+        <li>Menyiapkan rencana cadangan (Plan A dan B).</li>
+        <li>Menyiapkan tugas pengganti apabila tidak hadir.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="role" id="humas">
+    <div class="role-head"><div class="num">04</div><div>
+      <h2>Divisi Humas</h2><p class="reports-to">Bertanggung jawab kepada Ketua Pelaksana</p></div></div>
+    <div class="taskcard">
+      <p class="phase-tag"><span class="dot"></span>Pra-Kegiatan</p>
+      <ol>
+        <li>Birokrasi perizinan kegiatan ke Himpunan, Prodi, dan Fakultas.</li>
+        <li>Menghubungi dan memastikan kehadiran tamu undangan (Wadek, Kaprodi, Pembina Kemahasiswaan, DPO, BPO, Alumni).</li>
+        <li>Menghubungi stakeholder kegiatan (CIC, KSR UPI/Medis eksternal, juri Project Angkatan, mahasiswa aktif, kaang).</li>
+        <li>Menghubungi Kominfo terkait pengumuman menjelang kegiatan.</li>
+        <li>Komunikasi ke peserta terkait kegiatan yang akan berlangsung (sosialisasi kegiatan).</li>
+        <li>Mengirim reminder ke seluruh panitia dan HIMAPENA.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="role" id="logistik">
+    <div class="role-head"><div class="num">05</div><div>
+      <h2>Divisi Logistik</h2><p class="reports-to">Bertanggung jawab kepada Ketua Pelaksana</p></div></div>
+    <div class="taskcard">
+      <p class="phase-tag"><span class="dot"></span>Pra-Kegiatan</p>
+      <ol>
+        <li>Koordinasi efektif kepada setiap divisi.</li>
+        <li>Survei area dan pemetaan dengan matang area kegiatan.</li>
+        <li>Mendata seluruh kebutuhan peralatan dan perlengkapan dari setiap divisi.</li>
+        <li>Mengadakan seluruh kebutuhan peralatan dan perlengkapan dari setiap divisi.</li>
+        <li>Mengecek kondisi kebutuhan sebelum dibawa ke kegiatan.</li>
+        <li>Mengatur transportasi peserta dan kebutuhan barang ke tempat kegiatan.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="role" id="pdd">
+    <div class="role-head"><div class="num">06</div><div>
+      <h2>Divisi PDD</h2><p class="reports-to">Publikasi, Dokumentasi & Desain</p></div></div>
+    <div class="taskcard">
+      <p class="phase-tag"><span class="dot"></span>Pra-Kegiatan</p>
+      <ol>
+        <li>Komunikasi color palette dengan divisi acara.</li>
+        <li>Komunikasi ke Kominfo untuk order desain (pamflet, twibbon, banner, sertifikat, desain live report).</li>
+        <li>Membagi PIC dari setiap jobdesk (live report, dokumentasi).</li>
+        <li>Komunikasi dengan logistik terkait kebutuhan dokumentasi (kamera).</li>
+        <li>Menyiapkan baterai cadangan dan penyimpanan dokumentasi (cloud).</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="role" id="konsumsi">
+    <div class="role-head"><div class="num">07</div><div>
+      <h2>Divisi Konsumsi</h2><p class="reports-to">Bertanggung jawab kepada Ketua Pelaksana</p></div></div>
+    <div class="taskcard">
+      <p class="phase-tag"><span class="dot"></span>Pra-Kegiatan</p>
+      <ol>
+        <li>Mendata alergi dan makanan khusus peserta.</li>
+        <li>Mendata jumlah porsi data peserta.</li>
+        <li>Mencari dan memesan konsumsi berat sesuai dengan konsep acara.</li>
+        <li>Koordinasi dengan logistik terkait kebutuhan konsumsi (dispenser galon).</li>
+        <li>Menyiapkan air untuk panitia dan peserta.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="role" id="medis">
+    <div class="role-head"><div class="num">08</div><div>
+      <h2>Divisi Medis</h2><p class="reports-to">Bertanggung jawab kepada Ketua Pelaksana</p></div></div>
+    <div class="taskcard">
+      <p class="phase-tag"><span class="dot"></span>Pra-Kegiatan</p>
+      <ol>
+        <li>Membagi seluruh jobdesk sesuai dengan konsep acara.</li>
+        <li>Mengumpulkan data riwayat kesehatan dan alergi dari seluruh peserta.</li>
+        <li>Menyiapkan pelatihan untuk divisi medis dengan stakeholder (KSR UPI).</li>
+        <li>Menyiapkan seluruh obat-obatan dan penanganan kesehatan.</li>
+        <li>Koordinasi dengan medis eksternal (ambulan, kehadiran medis eksternal).</li>
+        <li>Mencari klinik atau rumah sakit terdekat dari area kegiatan.</li>
+        <li>Menyiapkan kendaraan darurat (ambulan).</li>
+      </ol>
+    </div>
+  </div>
+
+</div>
+
+<footer>Tasks disusun ulang berdasarkan alur pengerjaan pra-kegiatan EDUV 2026</footer>
+
+</body>
+</html>
